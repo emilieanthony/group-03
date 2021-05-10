@@ -22,7 +22,7 @@ Future<MqttClient> connect() async {
 
   final connMess = MqttConnectMessage()
       .withClientIdentifier('group3')
-      .keepAliveFor(60)
+     // .keepAlivePeriod(60)
       .withWillTopic('willtopic')
       .withWillMessage('My Will message')
       .withWillQos(MqttQos.atLeastOnce);
