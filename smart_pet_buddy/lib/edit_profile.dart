@@ -42,12 +42,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.green.shade400,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.of(context).pop();
@@ -81,8 +81,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               color: Theme.of(context).scaffoldBackgroundColor),
                           boxShadow: [
                             BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 10,
+                                spreadRadius: 1,
+                                blurRadius: 5,
                                 color: Colors.black.withOpacity(0.1),
                                 offset: Offset(0, 10))
                           ],

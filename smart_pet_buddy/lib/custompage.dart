@@ -31,6 +31,7 @@ class _CustomPageState extends State<CustomPage> {
   @override
   void initState() {
     super.initState();
+    //client = Controlpanel.client;
   }
 
   void _command(String command) {
@@ -39,6 +40,27 @@ class _CustomPageState extends State<CustomPage> {
     client?.publishMessage('/smartcar/group3/control/automove',
         MqttQos.atLeastOnce, builder.payload);
   }
+
+  /* void _beeDance() {
+    final builder = MqttClientPayloadBuilder();
+    builder.addString("beeDance");
+    client?.publishMessage('/smartcar/group3/control/automove',
+        MqttQos.atLeastOnce, builder.payload);
+  }
+
+  void _zigzag() {
+    final builder = MqttClientPayloadBuilder();
+    builder.addString("snake");
+    client?.publishMessage('/smartcar/group3/control/automove',
+        MqttQos.atLeastOnce, builder.payload);
+  }
+
+  void _circle() {
+    final builder = MqttClientPayloadBuilder();
+    builder.addString("circle");
+    client?.publishMessage('/smartcar/group3/control/automove',
+        MqttQos.atLeastOnce, builder.payload);
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +71,7 @@ class _CustomPageState extends State<CustomPage> {
         ),
         body: Container(
           //child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-     
+
           child: ListView.separated(
             itemCount: movementList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -61,6 +83,8 @@ class _CustomPageState extends State<CustomPage> {
 
 
           ),
+          //]
+          //),
         ));
   }
 }

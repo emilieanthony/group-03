@@ -35,6 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
 
   bool registration = false;
+  bool checkBoxValue = false;
   //String _userEmail = '';
 
 
@@ -56,7 +57,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: <Widget>[
                   TextFormField(
                     controller: _usernameController,
-                    decoration: const InputDecoration(labelText: 'Name'),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                      ),
+                      labelText: "Name",
+                      ),
                     validator: (String value) {
                       if (value.isEmpty) {
                         return 'Please enter some text';
@@ -64,9 +69,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
+                  const SizedBox(height: 4),
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                    ),
+                      labelText: "Email",
+                    ),
                     validator: (String value) {
                       if (value.isEmpty) {
                         return 'Please enter some text';
@@ -74,9 +84,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                   ),
+                  const SizedBox(height: 4),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                      ),
+                      labelText: "Password",
+                    ),
                     validator: (String value) {
                       if (value.isEmpty) {
                         return 'Please enter some text';
@@ -86,10 +101,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Row (
+                      children: <Widget> [
+                      Checkbox(
+                          value: checkBoxValue,
+                          onChanged: (bool value) {
+                            setState(() {
+                              checkBoxValue = value;
+                            });
+                          },
+                      ),
+                        Text("I agree to terms and conditions")
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     alignment: Alignment.center,
                     child: SignInButtonBuilder(
                       icon: Icons.person_add,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      fontSize: 18,
                       backgroundColor: Colors.green.shade300,
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
@@ -148,6 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
       user = _auth.currentUser;
     }
 
+    print(user.toString());
     return user;
     //   final User user = (await _auth.createUserWithEmailAndPassword(
     //     email: _emailController.text,
@@ -167,6 +200,4 @@ class _RegisterPageState extends State<RegisterPage> {
     //   }
   }
 }
-
-
 

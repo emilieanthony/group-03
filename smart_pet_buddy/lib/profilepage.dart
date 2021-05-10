@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_pet_buddy/edit_profile.dart';
 import 'package:smart_pet_buddy/profile_widget.dart';
+import 'package:smart_pet_buddy/settingspage.dart';
 import 'package:smart_pet_buddy/user.dart';
 import 'package:smart_pet_buddy/user_preferences.dart';
 import 'appbar_widget.dart';
@@ -28,7 +29,11 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           ProfileWidget(
             imagePath: user.imagePath,
-            onClicked: () async {},
+            onClicked: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => EditProfilePage(widget.app)),
+              );
+            },
           ),
           const SizedBox(height: 24),
           buildName(user),
@@ -39,7 +44,9 @@ class _ProfilePageState extends State<ProfilePage> {
             },
           ),
           ProfileMenu(text: "Settings",
-            press: () {},
+            press: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsPage(widget.app)));
+            },
           ),
           ProfileMenu(text: "Help & Feedback",
             press: () {},
@@ -62,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
       Text(
         user.email,
         style: TextStyle(color: Colors.grey),
-      )
+      ),
     ],
   );
 
@@ -94,11 +101,8 @@ class ProfileMenu extends StatelessWidget {
             ),
             ),
             Icon(Icons.arrow_forward_ios)
-
-
           ],
         ),
-
       ),
     );
   }

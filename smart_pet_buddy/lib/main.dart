@@ -8,9 +8,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
-
 import './register_page.dart';
 import './signin_page.dart';
+
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class AuthExampleApp extends StatelessWidget {
       title: 'Smart Pet Buddy',
       theme: ThemeData(
           primarySwatch: Colors.green,
-          accentColor: Colors.orangeAccent,
+          accentColor: Colors.grey[400],
           textTheme: TextTheme(
               headline3: TextStyle(
                 fontFamily: 'OpenSans',
@@ -69,36 +70,69 @@ class AuthTypeSelector extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+
         children: <Widget>[
+          SizedBox(
+              child: Column( children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: Image.asset('images/header1.png', scale: 1.1, ),
+
+                )
+              ])),
+          SizedBox(
+            child: Column( children: <Widget>[
+              Padding(
+             padding: EdgeInsets.all(5),
+              child: Image.asset('images/c3d3a8af0c4b499b952695ea3942a889.png',),
+            )
+           ])),
+
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(5),
             alignment: Alignment.center,
+            //backgroundColor: Colors.indigo,
             // child: ElevatedButton(
             //   child: Text("Registration"),
             //   onPressed: () => _pushPage(context, RegisterPage()),
             // )
 
             child: SignInButtonBuilder(
+              padding: const EdgeInsets.all(13),
               icon: Icons.person_add,
-              backgroundColor: Colors.indigo,
+              //backgroundColor: Colors.indigo,
+              backgroundColor: Color(0xFF6BC68D),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               text: 'Registration',
               onPressed: () => _pushPage(context, RegisterPage(app)),
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
             // child: ElevatedButton(
             //   child: Text("Registration"),
             //   onPressed: () => _pushPage(context, SignInPage()),
             // )
+
             child: SignInButtonBuilder(
+              padding: const EdgeInsets.all(13),
               icon: Icons.verified_user,
-              backgroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              backgroundColor: Color(0xFF6BC68D),
               text: 'Sign In',
               onPressed: () => _pushPage(context, SignInPage(app)),
             ),
           ),
+          SizedBox(width: 40),
+          Container (
+          child: Column( children: <Widget>[
+          Padding(
+          padding: EdgeInsets.only(left: 0, top: 131.5, right: 0, bottom: 0,),
+          child: Image.asset('images/footer.png', scale: 0.3),
+
+          )
+          ])),
         ],
       ),
     );

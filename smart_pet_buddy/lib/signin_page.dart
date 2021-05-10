@@ -112,16 +112,26 @@ class _EmailPasswordFormState extends State<_EmailPasswordForm> {
                   ),
                 ),
                 TextFormField(
+
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                  ),
+                    labelText: "Email",
+                  ),
                   validator: (String value) {
                     if (value.isEmpty) return 'Please enter some text';
                     return null;
                   },
                 ),
+                const SizedBox(height: 4),
                 TextFormField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                  ),
+                    labelText: "Password",
+                  ),
                   validator: (String value) {
                     if (value.isEmpty) return 'Please enter some text';
                     return null;
@@ -211,7 +221,11 @@ class _EmailLinkSignInSectionState extends State<_EmailLinkSignInSection> {
                   ),
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: const InputDecoration (
+                      border: OutlineInputBorder(
+                  ),
+              labelText: "Email",
+            ),
                     validator: (String value) {
                       if (value.isEmpty) return 'Please enter your email.';
                       return null;
@@ -221,9 +235,10 @@ class _EmailLinkSignInSectionState extends State<_EmailLinkSignInSection> {
                     padding: const EdgeInsets.only(top: 16),
                     alignment: Alignment.center,
                     child: SignInButtonBuilder(
+
                       icon: Icons.insert_link,
                       text: 'Sign In',
-                      backgroundColor: Colors.blueGrey[700],
+                      backgroundColor: Colors.green,
                       onPressed: () async {
                         await _signInWithEmailAndLink();
                       },
