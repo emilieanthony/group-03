@@ -7,6 +7,7 @@ import 'package:smart_pet_buddy/playpage.dart';
 import 'package:smart_pet_buddy/profile_page.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:dcdg/dcdg.dart';
 
 class ConvexBottomBar extends StatefulWidget {
   final FirebaseApp app;

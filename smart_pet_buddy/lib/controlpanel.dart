@@ -240,37 +240,6 @@ class ControlpanelState extends State<Controlpanel> {
       //alignment: Alignment.center,
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
 
-        // Expanded(
-        //   flex: 1,
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       Flexible(
-        //           child: SpbMqttClient.isConnected
-        //               ?
-        //                TextButton(
-        //                   child: Text('Disconnect',style: TextStyle(color: Colors.red)),
-        //                   onPressed: () => {(){
-        //                     client.disconnect();
-        //                     setState(() {});
-        //
-        //                   }
-        //
-        //                   },
-        //                 ):TextButton(
-        //                     child: Text('Connect',style: TextStyle(color: Colors.green)),
-        //                     onPressed: () => {
-        //                         connect().then((value) {
-        //                           client = value;
-        //                           SpbMqttClient.client = client;
-        //                           setState(() {});
-        //                            })
-        //                             },
-        //                       )
-        //       ),
-        //     ],
-        //   ),
-        // ),
         Expanded(
             flex: 2,
             child: Container(

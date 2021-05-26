@@ -1,0 +1,389 @@
+@startuml
+set namespaceSeparator ::
+
+class "smart_pet_buddy::register_page.dart::RegisterPage" {
+  +FirebaseApp* app
+  +String* title
+  +State<StatefulWidget*>* createState()
+}
+
+"smart_pet_buddy::register_page.dart::RegisterPage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::register_page.dart::_RegisterPageState" {
+  -GlobalKey<FormState*>* _formKey
+  -TextEditingController* _emailController
+  -TextEditingController* _passwordController
+  -TextEditingController* _usernameController
+  +bool* registration
+  +Widget* build()
+  +void dispose()
+  -Future<User*>* _register()
+}
+
+"smart_pet_buddy::register_page.dart::_RegisterPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"smart_pet_buddy::register_page.dart::_RegisterPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "smart_pet_buddy::homepage.dart::HomePage" {
+  +FirebaseApp* app
+  +_HomePageState* createState()
+}
+
+"smart_pet_buddy::homepage.dart::HomePage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::homepage.dart::_HomePageState" {
+  +MqttServerClient* client
+  +Widget* build()
+  +Future<void>* signOut()
+}
+
+"smart_pet_buddy::homepage.dart::_HomePageState" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+
+class "smart_pet_buddy::settingspage.dart::SettingsPage" {
+  +FirebaseApp* app
+  +_SettingsPageState* createState()
+}
+
+"smart_pet_buddy::settingspage.dart::SettingsPage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::settingspage.dart::_SettingsPageState" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::raceMode_dialog.dart::RaceModeDialog" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::privacyPage.dart::PrivacyPage" {
+  +FirebaseApp* app
+  +_PrivacyPageState* createState()
+}
+
+"smart_pet_buddy::privacyPage.dart::PrivacyPage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::privacyPage.dart::_PrivacyPageState" {
+  +bool* value
+  +bool* valueShare
+  +bool* valueAuto
+  +bool* valueRem
+  +bool* valueError
+  +Widget* build()
+}
+
+class "smart_pet_buddy::dialogs.dart::DialogAction" {
+  +int* index
+  {static} +List<DialogAction*>* values
+  {static} +DialogAction* save
+  {static} +DialogAction* abort
+}
+
+"smart_pet_buddy::dialogs.dart::DialogAction" o-- "smart_pet_buddy::dialogs.dart::DialogAction"
+
+class "smart_pet_buddy::dialogs.dart::Dialogs" {
+  {static} +Future<DialogAction*>* yesAbortDialog()
+}
+
+class "smart_pet_buddy::racemode.dart::RaceMode" {
+  +_RaceModeState* createState()
+}
+
+class "smart_pet_buddy::racemode.dart::_RaceModeState" {
+  +MqttServerClient* client
+  +double* x
+  +double* y
+  +double* z
+  +int* speed
+  +int* currentSpeed
+  +int* maxGear
+  +int* minGear
+  +SnackBar* snackBar
+  +void initState()
+  +void dispose()
+  -void _forward()
+  -void _reverse()
+  -void _throttle()
+  -void _steer()
+  -void _initRaceModeStatus()
+  +Widget* build()
+}
+
+"smart_pet_buddy::racemode.dart::_RaceModeState" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+"smart_pet_buddy::racemode.dart::_RaceModeState" o-- "flutter::src::material::snack_bar.dart::SnackBar"
+
+class "smart_pet_buddy::movementInfo.dart::MovementInfo" {
+  +String* title
+  +String* imageUrl
+  +String* command
+}
+
+class "smart_pet_buddy::signin_page.dart::SignInPage" {
+  +FirebaseApp* app
+  +State<StatefulWidget*>* createState()
+}
+
+"smart_pet_buddy::signin_page.dart::SignInPage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::signin_page.dart::_SignInPageState" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::signin_page.dart::_EmailPasswordForm" {
+  +FirebaseApp* app
+  +State<StatefulWidget*>* createState()
+}
+
+"smart_pet_buddy::signin_page.dart::_EmailPasswordForm" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::signin_page.dart::_EmailPasswordFormState" {
+  -GlobalKey<FormState*>* _formKey
+  -TextEditingController* _emailController
+  -TextEditingController* _passwordController
+  +Widget* build()
+  +Widget* inputFile()
+  +void dispose()
+  -Future<void>* _signInWithEmailAndPassword()
+}
+
+"smart_pet_buddy::signin_page.dart::_EmailPasswordFormState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"smart_pet_buddy::signin_page.dart::_EmailPasswordFormState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "smart_pet_buddy::signin_page.dart::_OtherProvidersSignInSection" {
+  +FirebaseApp* app
+  +State<StatefulWidget*>* createState()
+}
+
+"smart_pet_buddy::signin_page.dart::_OtherProvidersSignInSection" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::signin_page.dart::_OtherProvidersSignInSectionState" {
+  -int* _selection
+  -String* _provider
+  +Widget* build()
+  -void _handleRadioButtonSelected()
+  -void _signInWithOtherProvider()
+  -Future<void>* _signInWithGoogle()
+}
+
+class "smart_pet_buddy::controlpage_dialog.dart::ControlpageDialog" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::controlpanel.dart::Controlpanel" {
+  +ControlpanelState* createState()
+}
+
+class "smart_pet_buddy::controlpanel.dart::ControlpanelState" {
+  +MqttServerClient* client
+  +ValueNotifier<Image*>* imageValueNotifier
+  -int* _counter
+  +int* currentSpeed
+  +int* reverseSpeed
+  +bool* isForward
+  +bool* isReversed
+  +bool* isLeft
+  +bool* isRight
+  +String* steerNeutral
+  +String* steerLeft
+  +String* steerRight
+  +String* throttleNeutral
+  +int* multiplier
+  +int* maxGear
+  +SnackBar* snackBar
+  -void _backward()
+  -void _forward()
+  -void _left()
+  -void _cancelLeft()
+  -void _right()
+  -void _cancelRight()
+  -void _addSpeed()
+  -void _reduceSpeed()
+  -void _stop()
+  -void _throttle()
+  -void _moreSpeed()
+  -void _lessSpeed()
+  -void _steer()
+  +void initState()
+  +void dispose()
+  -void _initControlPanelStatus()
+  +Widget* build()
+}
+
+"smart_pet_buddy::controlpanel.dart::ControlpanelState" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+"smart_pet_buddy::controlpanel.dart::ControlpanelState" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<Image>"
+"smart_pet_buddy::controlpanel.dart::ControlpanelState" o-- "flutter::src::material::snack_bar.dart::SnackBar"
+
+class "smart_pet_buddy::main.dart::MyApp" {
+  +GlobalKey<NavigatorState*>* navigatorKey
+  +FirebaseApp* app
+  +Widget* build()
+}
+
+"smart_pet_buddy::main.dart::MyApp" o-- "flutter::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"smart_pet_buddy::main.dart::MyApp" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::main.dart::SmartPetBuddy" {
+  +FirebaseApp* app
+  +Widget* build()
+}
+
+"smart_pet_buddy::main.dart::SmartPetBuddy" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::custompage.dart::CustomPage" {
+  +_CustomPageState* createState()
+}
+
+class "smart_pet_buddy::custompage.dart::_CustomPageState" {
+  +String* commandRunning
+  +MqttServerClient* client
+  {static} +String* imageUrlBee
+  {static} +String* imageUrlCircle
+  {static} +String* imageUrlZigzag
+  {static} +String* imageUrlBackForth
+  {static} +MovementInfo* beeDance
+  {static} +MovementInfo* circle
+  {static} +MovementInfo* zigzag
+  {static} +MovementInfo* backForth
+  +List<MovementInfo*>* movementList
+  +SnackBar* snackBar
+  +void initState()
+  -void _command()
+  -void _initCommandStatusListener()
+  +Widget* build()
+}
+
+"smart_pet_buddy::custompage.dart::_CustomPageState" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+"smart_pet_buddy::custompage.dart::_CustomPageState" o-- "smart_pet_buddy::movementInfo.dart::MovementInfo"
+"smart_pet_buddy::custompage.dart::_CustomPageState" o-- "flutter::src::material::snack_bar.dart::SnackBar"
+
+class "smart_pet_buddy::movementWidget.dart::MovementWidget" {
+  +MovementInfo* info
+  +void Function()* onPressed
+  +String* commandRunning
+  +_MovementWidgetState* createState()
+}
+
+"smart_pet_buddy::movementWidget.dart::MovementWidget" o-- "smart_pet_buddy::movementInfo.dart::MovementInfo"
+"smart_pet_buddy::movementWidget.dart::MovementWidget" o-- "flutter::src::gestures::tap.dart::void Function()"
+
+class "smart_pet_buddy::movementWidget.dart::_MovementWidgetState" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::edit_profile.dart::EditProfilePage" {
+  +FirebaseApp* app
+  +_EditProfilePageState* createState()
+}
+
+"smart_pet_buddy::edit_profile.dart::EditProfilePage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::edit_profile.dart::_EditProfilePageState" {
+  +User* user
+  +TextEditingController* nameController
+  +TextEditingController* emailController
+  +TextEditingController* passwordController
+  +TextEditingController* locationController
+  +String* userLocation
+  +Widget* build()
+  +dynamic buildTextField()
+}
+
+"smart_pet_buddy::edit_profile.dart::_EditProfilePageState" o-- "firebase_auth::firebase_auth.dart::User"
+"smart_pet_buddy::edit_profile.dart::_EditProfilePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "smart_pet_buddy::spbMqttClient.dart::SpbMqttClient" {
+  {static} +MqttServerClient* client
+  {static} +bool* isConnected
+  {static} +ValueNotifier<Bitmap*>* bmValueNotifier
+}
+
+"smart_pet_buddy::spbMqttClient.dart::SpbMqttClient" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+"smart_pet_buddy::spbMqttClient.dart::SpbMqttClient" o-- "flutter::src::foundation::change_notifier.dart::ValueNotifier<Bitmap>"
+
+class "smart_pet_buddy::playpage.dart::PlayPage" {
+  +_PlayPageState* createState()
+}
+
+class "smart_pet_buddy::playpage.dart::_PlayPageState" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::playReminders.dart::RemindersPage" {
+  +FirebaseApp* app
+  +_RemindersPageState* createState()
+}
+
+"smart_pet_buddy::playReminders.dart::RemindersPage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::playReminders.dart::_RemindersPageState" {
+  +bool* morning
+  +bool* evening
+  +bool* afternoon
+  +Widget* build()
+}
+
+class "smart_pet_buddy::playReminders.dart::TimeCard" {
+  +IconData* icon
+  +String* time
+  +bool* isSelected
+  +Widget* build()
+}
+
+"smart_pet_buddy::playReminders.dart::TimeCard" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "smart_pet_buddy::bottomnavbar_widget.dart::ConvexBottomBar" {
+  +FirebaseApp* app
+  +ConvexBottomBarState* createState()
+}
+
+"smart_pet_buddy::bottomnavbar_widget.dart::ConvexBottomBar" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::bottomnavbar_widget.dart::ConvexBottomBarState" {
+  -int* _currentIndex
+  +MqttServerClient* client
+  +List<Widget*>* tabs
+  +void initState()
+  +Widget* build()
+}
+
+"smart_pet_buddy::bottomnavbar_widget.dart::ConvexBottomBarState" o-- "mqtt_client::mqtt_server_client.dart::MqttServerClient"
+
+class "smart_pet_buddy::bottomnavbar_widget.dart::Style" {
+  +double* activeIconSize
+  +double* activeIconMargin
+  +double* iconSize
+  +TextStyle* textStyle()
+}
+
+class "smart_pet_buddy::password_input.dart::PasswordInput" {
+  +String* labelText
+  +String* placeholder
+  +TextEditingController* textController
+  +_PasswordInputState* createState()
+}
+
+"smart_pet_buddy::password_input.dart::PasswordInput" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "smart_pet_buddy::password_input.dart::_PasswordInputState" {
+  +bool* showPassword
+  +Widget* build()
+}
+
+class "smart_pet_buddy::profile_page.dart::ProfilePage" {
+  +FirebaseApp* app
+  +_ProfilePageState* createState()
+}
+
+"smart_pet_buddy::profile_page.dart::ProfilePage" o-- "firebase_core::firebase_core.dart::FirebaseApp"
+
+class "smart_pet_buddy::profile_page.dart::_ProfilePageState" {
+  +Widget* build()
+}
+
+class "smart_pet_buddy::profile_page.dart::ProfileMenu" {
+  +String* text
+  +void Function()* press
+  +Widget* build()
+}
+
+"smart_pet_buddy::profile_page.dart::ProfileMenu" o-- "dart::ui::void Function()"
+
+
+@enduml
